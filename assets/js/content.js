@@ -261,10 +261,11 @@ window.HEARD_CONTENT = {
     "position": "undergraduate",
     "email": "seohyeon.cheon@stonybrook.edu ",
     "researchInterests": [
-      "Hardware and Controller Design",
-      "TBA"
+      "Robotics & Autonomous Systems",
+      "Mechanical Design & Robotic Mechanisms",
+      "Field & Space Robotics"
     ],
-    "photo": "assets/images/portrait-placeholder.svg"
+    "photo": "assets/images/Members/Seohyeon.jpg"
   },
   {
     "name": "Youngjae Cho",
