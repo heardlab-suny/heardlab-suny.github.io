@@ -63,3 +63,29 @@
 .news-read-more{display:inline-block;margin-top:15px}
 .news-card-linked:hover{border-color:#B4BED4;box-shadow:0 8px 24px rgba(31,40,78,.06)}
 @media(max-width:640px){.news-filters{align-items:flex-start;flex-direction:column;gap:14px}.news-year-control{align-self:flex-end}.news-card-feature .news-art{min-height:0}}
+
+/* Current Member interests grow naturally with content; no clipping or fixed height. */
+.member-interests{margin:16px 0 20px}
+.member-interests h4{margin:0 0 8px;font-size:12px;font-weight:700;line-height:1.5;color:var(--slate)}
+.member-interests ul{margin:0;padding-left:20px;list-style:disc;color:var(--muted);font-size:14px;line-height:1.75}
+.member-interests li{padding-left:2px;overflow-wrap:anywhere}
+.member-interests li+li{margin-top:5px}
+.member-interests li::marker{color:var(--blue)}
+
+/* Team navigation: a real overview link plus an accessible disclosure button. */
+.nav-team{position:relative}
+.nav-team-row{display:flex;align-items:stretch}
+.team-menu-toggle{display:flex;align-items:center;justify-content:center;width:32px;padding:0;border:0;background:transparent;color:#37405E}
+.team-menu-toggle svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6}
+.team-menu-toggle:hover,.team-menu-toggle.active{color:var(--blue)}
+.team-submenu{position:absolute;top:100%;left:0;z-index:40;min-width:230px;padding:7px;background:#fff;border:1px solid var(--line);border-radius:0 0 9px 9px;box-shadow:0 12px 28px rgba(31,40,78,.12)}
+.team-submenu[hidden]{display:none}
+.team-submenu a{display:block;padding:11px 13px;color:#37405E;font-size:13px;font-weight:700;border-radius:5px}
+.team-submenu a:hover,.team-submenu a.active{color:var(--blue);background:#EEF1FC}
+.nav-team a:focus-visible,.team-menu-toggle:focus-visible,.team-overview-card:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.team-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.team-overview-card{display:block;padding:32px;border:1px solid var(--line);border-radius:12px}
+.team-overview-card:hover{border-color:var(--blue);background:var(--bg)}
+.team-overview-card p{color:var(--muted)}
+.team-overview-card h2{font-size:27px}
+@media(max-width:640px){.nav-team-row .nav-link{flex:1}.team-menu-toggle{width:44px}.team-submenu{position:static;min-width:0;margin:0 0 8px 12px;box-shadow:none;border-radius:7px}.team-overview{grid-template-columns:1fr}}

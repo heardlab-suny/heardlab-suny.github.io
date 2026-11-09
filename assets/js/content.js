@@ -188,26 +188,35 @@ window.HEARD_CONTENT = {
   // Leave image/url empty or omit them to keep gradient artwork/no Read more link.
   "news": [
     {
-      "date": "2026",
-      "title": "HEARD Lab takes shape at SUNY Korea",
-      "description": "The Human-centered Engineering and Autonomous Robot Design Lab brings together robotics, biomechanics, and computational design.",
+      "date": "2026-08-14",
+      "title": "Prof. Jeonghan Yu Joins SUNY Korea as Assistant Professor",
+      "description": "Prof. Jeonghan Yu joined the Department of Mechanical Engineering at SUNY Korea in August 2026 and established HEARD Lab (Human-centered Engineering and Autonomous Robot Design). The lab focuses on advancing human-centered robotic systems through the integration of robotic mechanism design, intelligent control, and human biomechanics.",
       "category": "Lab Updates",
+      "image": "",
+      "imageAlt": "Professor Jeonghan Yu",
+      "url": "https://me.sunykorea.ac.kr/me/html/sub01/0106.html?mode=V&no=535cbef9baaad161ad8c750d4993cb0e",
       "art": "abstract"
     },
     {
-      "date": "2026",
-      "title": "IGC SEED R&D funding for personalized wearable robotics",
-      "description": "Our funded project explores personalized biomechanical information for wearable assistive robot design.",
+      "date": "2026-10-08",
+      "title": "HEARD Lab Receives Its First Research Funding through the IGC SEED R&D Program",
+      "description": "HEARD Lab has received its first research funding through the IGC SEED R&D Program to advance personalized wearable and assistive robotics. The project integrates motion tracking, cable-actuated robotic assistance, and quantitative movement assessment to develop robotic systems tailored to individual biomechanical characteristics. By combining real-time movement measurements with robotic hardware and computational design methods, the project aims to establish a foundation for adaptive and personalized human assistance.",
       "category": "Research",
+      "image": "",
+      "imageAlt": "HEARD Lab wearable robotics research",
+      "url": "",
       "art": "robotics"
     },
-    {
-      "date": "2026",
-      "title": "Building a reconfigurable cable-driven robotics platform",
-      "description": "Our ongoing development work integrates multi-segment motion tracking, cable-actuated assistance, and quantitative movement assessment.",
-      "category": "Projects",
-      "art": "design"
-    }
+    // {
+    //   "date": "2026",
+    //   "title": "Building a Reconfigurable Cable-Driven Robotics Platform",
+    //   "description": "HEARD Lab is developing a reconfigurable cable-driven robotic platform that supports assistance across multiple body segments. The system combines adaptable cable routing, multi-segment motion tracking, and cable tension control to investigate human movement, postural stability, and robotic assistance strategies. The platform will also support the quantitative assessment of movement and the development of personalized assistance methods.",
+    //   "category": "Projects",
+    //   "image": "",
+    //   "imageAlt": "Reconfigurable cable-driven robotics platform",
+    //   "url": "",
+    //   "art": "design"
+    // }
   ],
   "announcements": [
     {
@@ -224,7 +233,10 @@ window.HEARD_CONTENT = {
     }
   ],
   // Add confirmed profiles here; these examples are documentation only.
-  // members: { name, position, email, researchArea, bio, photo }
+  // members: { name, position, email, researchInterests: ["Interest", ...], photo }
+  // Add any number of strings; each becomes a bullet on the Team page.
+  // Legacy researchArea/bio text is also retained by the renderer.
+  // Existing text (including TBA) below is preserved verbatim; edit when confirmed.
   // position: "postdoc", "visiting", "phd", "ms", or "undergraduate".
   // Leave blank if unconfirmed; no tag is shown and the profile sorts last.
   // collaborators: { name, affiliation, email, researchArea, bio, photo }
@@ -237,24 +249,31 @@ window.HEARD_CONTENT = {
     "name": "Jinkwang Kang",
     "position": "undergraduate",
     "email": "kang.jinkwang@stonybrook.edu",
-    "researchArea": "Hardware and Controller Design",
-    "bio": "TBA",
-    "photo": "assets/images/portrait-placeholder.svg"
+    "researchInterests": [
+      "Humanoid Robotics",
+      "Bipedal Locomotion",
+      "Robot Control and Dynamics"
+    ],
+    "photo": "assets/images/Members/Jinkwang.jpeg"
   },
   {
     "name": "Seohyeon (Jina) Cheon",
     "position": "undergraduate",
     "email": "seohyeon.cheon@stonybrook.edu ",
-    "researchArea": "Hardware and Controller Design",
-    "bio": "TBA",
+    "researchInterests": [
+      "Hardware and Controller Design",
+      "TBA"
+    ],
     "photo": "assets/images/portrait-placeholder.svg"
   },
   {
     "name": "Youngjae Cho",
     "position": "undergraduate",
     "email": "youngjae.cho@stonybrook.edu",
-    "researchArea": "Motion Capture System Analysis",
-    "bio": "TBA",
+    "researchInterests": [
+      "Motion Capture System Analysis",
+      "TBA"
+    ],
     "photo": "assets/images/portrait-placeholder.svg"
   },
   ],

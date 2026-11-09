@@ -6,7 +6,48 @@
   const safeHref=u=>/^https:\/\//.test(String(u))||/^mailto:/.test(String(u))?u:'#';
   const strongName = s=>escape(s).replace(/Jeonghan Yu/g,'<strong>Jeonghan Yu</strong>');
   const navToggle=byId('menu-toggle'), nav=byId('site-nav');
-  if(navToggle&&nav){navToggle.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');navToggle.setAttribute('aria-expanded',String(open));});}
+  const teamMenu=byId('nav-team'),teamToggle=byId('team-menu-toggle'),teamSubmenu=byId('team-submenu');
+  const setTeamOpen=open=>{
+    if(!teamToggle||!teamSubmenu)return;
+    teamToggle.setAttribute('aria-expanded',String(open));
+    teamSubmenu.hidden=!open;
+  };
+  if(teamMenu&&teamToggle&&teamSubmenu){
+    const isOpen=()=>teamToggle.getAttribute('aria-expanded')==='true';
+    teamToggle.addEventListener('click',()=>setTeamOpen(!isOpen()));
+    teamMenu.addEventListener('pointerenter',event=>{
+      if(event.pointerType==='mouse'&&window.matchMedia('(min-width:641px)').matches)setTeamOpen(true);
+    });
+    teamMenu.addEventListener('pointerleave',()=>{
+      if(!teamMenu.contains(document.activeElement))setTeamOpen(false);
+    });
+    teamMenu.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&isOpen()){event.preventDefault();event.stopPropagation();setTeamOpen(false);teamToggle.focus();}
+      if(event.key==='ArrowDown'&&event.target===teamToggle){event.preventDefault();setTeamOpen(true);teamSubmenu.querySelector('a').focus();}
+    });
+    teamMenu.addEventListener('focusout',event=>{
+      if(!teamMenu.contains(event.relatedTarget))setTeamOpen(false);
+    });
+    document.addEventListener('pointerdown',event=>{
+      if(!teamMenu.contains(event.target))setTeamOpen(false);
+    });
+    // On narrow screens tapping the label expands; the overview remains a
+    // normal desktop link and is also reachable through the footer.
+    teamMenu.querySelector('a').addEventListener('click',event=>{
+      if(window.matchMedia('(max-width:640px)').matches){event.preventDefault();setTeamOpen(!isOpen());}
+    });
+  }
+  if(navToggle&&nav){
+    navToggle.addEventListener('click',()=>{
+      const open=nav.classList.toggle('is-open');navToggle.setAttribute('aria-expanded',String(open));
+      if(!open)setTeamOpen(false);
+    });
+    nav.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&nav.classList.contains('is-open')){
+        setTeamOpen(false);nav.classList.remove('is-open');navToggle.setAttribute('aria-expanded','false');navToggle.focus();
+      }
+    });
+  }
   const artNames={abstract:'HL',robotics:'RB',design:'RD'};
   // Accept HTTPS or relative destinations; reject schemes, protocol-relative URLs,
   // backslashes, controls, and credentials before inserting an escaped attribute.
@@ -120,11 +161,22 @@
     const alt=src===photoFallback ? `Portrait unavailable for ${m.name}` : `Portrait of ${m.name}`;
     return `<img class="profile-photo" src="${escape(src)}" alt="${escape(alt)}" loading="lazy" width="400" height="500">`;
   }
+  function memberInterests(m){
+    const interests=Array.isArray(m.researchInterests)?m.researchInterests:[];
+    // Retain legacy text even when an entry also has the new array.
+    return [...new Set([...interests,m.researchArea,m.bio]
+      .filter(value=>typeof value==='string'&&value.trim())
+      .map(value=>value.trim()))];
+  }
+  function researchInterestsList(m){
+    const interests=memberInterests(m);
+    return interests.length?`<div class="member-interests"><h4>Research Interests</h4><ul>${interests.map(interest=>`<li>${escape(interest)}</li>`).join('')}</ul></div>`:'';
+  }
   function memberCard(m,collaborator=false){
     const email=String(m.email||'').trim();
     const emailLink=/^[^\s@<>?&#]+@[^\s@<>?&#]+\.[^\s@<>?&#]+$/.test(email)
       ? `<a class="member-email" href="mailto:${escape(encodeURIComponent(email))}">${escape(email)}</a>` : '';
-    return `<article class="member-card">${profilePhoto(m)}<div class="member-body"><h3>${escape(m.name)}</h3>${collaborator?'':positionTag(m.position)}${collaborator&&m.affiliation?`<p class="member-affiliation">${escape(m.affiliation)}</p>`:''}${m.researchArea?`<span class="research-label">${escape(m.researchArea)}</span>`:''}${m.bio?`<p class="member-bio">${escape(m.bio)}</p>`:''}${emailLink}</div></article>`;
+    return `<article class="member-card">${profilePhoto(m)}<div class="member-body"><h3>${escape(m.name)}</h3>${collaborator?'':positionTag(m.position)}${collaborator&&m.affiliation?`<p class="member-affiliation">${escape(m.affiliation)}</p>`:''}${collaborator?`${m.researchArea?`<span class="research-label">${escape(m.researchArea)}</span>`:''}${m.bio?`<p class="member-bio">${escape(m.bio)}</p>`:''}`:researchInterestsList(m)}${emailLink}</div></article>`;
   }
   const profiles=arr=>Array.isArray(arr)?arr.filter(m=>m&&typeof m.name==='string'&&m.name.trim()):[];
   function renderProfiles(id,arr,render){
@@ -144,7 +196,7 @@
   const orderedMembers=profiles(data.members).sort((a,b)=>positionRank(a.position)-positionRank(b.position));
   renderProfiles('team-members',orderedMembers,m=>memberCard(m));
   renderProfiles('team-collaborators',data.collaborators,m=>memberCard(m,true));
-  renderProfiles('home-members',orderedMembers.slice(0,3),m=>`<a class="member-mini" href="team.html">${profilePhoto(m)}<strong>${escape(m.name)}</strong>${positionTag(m.position)}${m.researchArea?`<span>${escape(m.researchArea)}</span>`:''}</a>`);
+  renderProfiles('home-members',orderedMembers.slice(0,3),m=>`<a class="member-mini" href="members.html">${profilePhoto(m)}<strong>${escape(m.name)}</strong>${positionTag(m.position)}${memberInterests(m).length?`<span>${escape(memberInterests(m)[0])}</span>`:''}</a>`);
   document.querySelectorAll('.profile-photo').forEach(img=>{
     img.addEventListener('error',()=>{
       img.src=photoFallback;
