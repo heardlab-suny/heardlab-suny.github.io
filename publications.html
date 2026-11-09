@@ -12,10 +12,70 @@
 <script defer src="assets/js/site.js"></script>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to content</a><header class="site-header"><div class="container header-main"><a class="brand" href="index.html" aria-label="HEARD Lab home"><img src="assets/images/heardlab-mark.svg" alt="HEARD Lab mark"><span class="brand-copy"><strong>HEARD Lab</strong><span>HUMAN-CENTERED ENGINEERING<br>AND AUTONOMOUS ROBOT DESIGN</span></span></a><div class="school-logo"><a href="https://www.sunykorea.ac.kr/en/" target="_blank" rel="noopener noreferrer" aria-label="SUNY Korea website"><img src="assets/images/school-logo-placeholder.svg" alt="SUNY Korea temporary wordmark, replace with official school logo"></a></div><button id="menu-toggle" class="menu-toggle" aria-controls="site-nav" aria-expanded="false">☰ &nbsp;Menu</button></div><div class="nav-row"><nav class="container nav-inner" id="site-nav" aria-label="Main navigation"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="team.html">Team</a><a class="nav-link" href="news.html">News</a><a class="nav-link active" href="publications.html" aria-current="page">Publications</a><a class="nav-link" href="courses.html">Courses</a><a class="nav-link" href="contact.html">Contact</a></nav></div></header>
-<main id="main"><div class="page-intro"><div class="container"><div class="eyebrow">Research output</div><h1>Publications</h1><p>Peer-reviewed journal articles and conference presentations related to our research.</p></div></div>
-<section class="section"><div class="container"><p class="notice" style="margin-top:0;margin-bottom:24px">This bibliography is based on the PI's CV dated June 21, 2026. Review and update entries before public launch. Publications listed here include prior research conducted before HEARD Lab was established.</p><div class="tabs" role="tablist" aria-label="Publication categories"><button type="button" role="tab" aria-selected="true" class="tab-button active" data-tab="journal">Journal Articles <span class="count" data-count="journal"></span></button><button type="button" role="tab" aria-selected="false" class="tab-button" data-tab="international">International Conferences <span class="count" data-count="international"></span></button><button type="button" role="tab" aria-selected="false" class="tab-button" data-tab="korea">Conferences Held in Korea <span class="count" data-count="korea"></span></button></div><section class="tab-pane active" data-tab-content="journal" aria-label="Journal Articles"><div class="pub-list" id="journal-pubs"></div></section><section class="tab-pane" data-tab-content="international" aria-label="International Conferences"><div class="pub-list" id="international-pubs"></div></section><section class="tab-pane" data-tab-content="korea" aria-label="Conferences Held in Korea"><div class="pub-list" id="korea-pubs"></div></section></div></section>
+
+<a href="#main" class="skip-link">Skip to content</a><header class="site-header"><div class="container header-main"><a class="brand" href="index.html" aria-label="HEARD Lab home"><img src="assets/images/heardlab-mark.svg" alt="HEARD Lab mark"><span class="brand-copy"><strong>HEARD Lab</strong><span>HUMAN-CENTERED ENGINEERING<br>AND AUTONOMOUS ROBOT DESIGN</span></span></a><div class="school-logo"><a href="https://www.sunykorea.ac.kr/en/" target="_blank" rel="noopener noreferrer" aria-label="SUNY Korea website"><img src="assets/images/7_SUNY_sbu_eng.png" alt="SUNY Korea temporary wordmark, replace with official school logo"></a></div><button id="menu-toggle" class="menu-toggle" aria-controls="site-nav" aria-expanded="false">☰ &nbsp;Menu</button></div><div class="nav-row"><nav class="container nav-inner" id="site-nav" aria-label="Main navigation"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="team.html">Team</a><a class="nav-link" href="news.html">News</a><a class="nav-link active" href="publications.html" aria-current="page">Publications</a><a class="nav-link" href="courses.html">Courses</a><a class="nav-link" href="contact.html">Contact</a></nav></div></header>
+
+<main id="main">
+
+  <div class="page-intro">
+    <div class="container">
+      <div class="eyebrow">Research Output</div>
+      <h1>Publications</h1>
+      <p>
+        Research contributions in robotics, biomechanics,
+        and computational design.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="tabs" role="tablist" aria-label="Publication categories">
+
+        <button type="button" role="tab" aria-selected="true"
+                class="tab-button active" data-tab="journal">
+          Journal Articles
+          <span class="count" data-count="journal"></span>
+        </button>
+
+        <button type="button" role="tab" aria-selected="false"
+                class="tab-button" data-tab="international">
+          International Conferences
+          <span class="count" data-count="international"></span>
+        </button>
+
+        <button type="button" role="tab" aria-selected="false"
+                class="tab-button" data-tab="korea">
+          Conferences Held in Korea
+          <span class="count" data-count="korea"></span>
+        </button>
+
+      </div>
+
+      <section class="tab-pane active"
+               data-tab-content="journal"
+               aria-label="Journal Articles">
+        <div class="pub-list" id="journal-pubs"></div>
+      </section>
+
+      <section class="tab-pane"
+               data-tab-content="international"
+               aria-label="International Conferences">
+        <div class="pub-list" id="international-pubs"></div>
+      </section>
+
+      <section class="tab-pane"
+               data-tab-content="korea"
+               aria-label="Conferences Held in Korea">
+        <div class="pub-list" id="korea-pubs"></div>
+      </section>
+
+    </div>
+  </section>
+
 </main>
+
 <footer class="site-footer"><div class="container footer-top"><div><a class="footer-title" href="index.html">HEARD Lab</a><p class="footer-muted">Human-centered Engineering and Autonomous Robot Design<br>Department of Mechanical Engineering<br>SUNY Korea · Incheon, Republic of Korea</p></div><div><div class="footer-label">Explore</div><div class="footer-links"><a href="team.html">Our Team</a><a href="news.html">Latest News</a><a href="publications.html">Publications</a><a href="courses.html">Teaching & Courses</a></div></div><div><div class="footer-label">Contact</div><p class="footer-muted">Incheon Global Campus<br>Songdo, Incheon, Republic of Korea</p><div class="footer-links"><a href="contact.html">Contact the lab ↗</a><a href="https://www.sunykorea.ac.kr/en/" target="_blank" rel="noopener noreferrer">SUNY Korea ↗</a></div></div></div><div class="container footer-bottom"><span>© 2026 HEARD Lab. All rights reserved.</span><span>Independent research lab website · Hosted with GitHub Pages</span></div></footer>
 </body>
 </html>

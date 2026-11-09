@@ -1,5 +1,4 @@
 // Update publication entries, news, members, and courses here.
-// Bibliography transcribed from Jeonghan Yu CV dated June 21, 2026.
 window.HEARD_CONTENT = {
   "journal": [
     {
@@ -108,6 +107,14 @@ window.HEARD_CONTENT = {
   ],
   "korea": [
     {
+      "year": 2026,
+      "title": "Multivariate Whole-Body Kinematic Analysis of Standing Yoga Maneuvers in Practitioners and Non-Practitioners",
+      "authors": "Jeonghan Yu, Sunil K. Agrawal",
+      "venue": "KSME Annual Meeting",
+      "location": "Jeju, Korea",
+      "presentation": "Oral"
+    },
+    {
       "year": 2023,
       "title": "Flexible Shaft Control for Power Transmission of Wearable Exoskeleton Robots",
       "authors": "Jeonghan Yu, Jongjun Lee, Seungtae Yang, Junyoung Moon, Giuk Lee, and Yoon Young Kim",
@@ -172,12 +179,19 @@ window.HEARD_CONTENT = {
       "presentation": "Poster"
     }
   ],
+  // News: edit title, description, category, and date here for both News and Home.
+  // date: "YYYY" or "YYYY-MM-DD"; use only known precision.
+  // Year-only entries keep their order and separate runs of fully dated entries.
+  // Optional image: "assets/images/news/filename.jpg" (also PNG or WebP).
+  // Optional imageAlt: describe the photograph; title is the fallback alt text.
+  // Optional url: an HTTPS source or an internal relative link, e.g. publications.html.
+  // Leave image/url empty or omit them to keep gradient artwork/no Read more link.
   "news": [
     {
       "date": "2026",
       "title": "HEARD Lab takes shape at SUNY Korea",
       "description": "The Human-centered Engineering and Autonomous Robot Design Lab brings together robotics, biomechanics, and computational design.",
-      "category": "Lab updates",
+      "category": "Lab Updates",
       "art": "abstract"
     },
     {
@@ -191,7 +205,7 @@ window.HEARD_CONTENT = {
       "date": "2026",
       "title": "Building a reconfigurable cable-driven robotics platform",
       "description": "Our ongoing development work integrates multi-segment motion tracking, cable-actuated assistance, and quantitative movement assessment.",
-      "category": "Project",
+      "category": "Projects",
       "art": "design"
     }
   ],
@@ -209,22 +223,50 @@ window.HEARD_CONTENT = {
       "href": "team.html"
     }
   ],
+  // Add confirmed profiles here; these examples are documentation only.
+  // members: { name, position, email, researchArea, bio, photo }
+  // position: "postdoc", "visiting", "phd", "ms", or "undergraduate".
+  // Leave blank if unconfirmed; no tag is shown and the profile sorts last.
+  // collaborators: { name, affiliation, email, researchArea, bio, photo }
+  // photo is a site-relative path, e.g. assets/images/members/full-name.jpg
+  // or assets/images/collaborators/full-name.jpg. Create folders as needed.
+  // Omit unknown optional fields or use an empty string. Missing/broken photos
+  // use a neutral silhouette. Home previews the first 3 members in academic position order.
   "members": [
-    {
-      "name": "Profile coming soon",
-      "role": "Undergraduate Researcher",
-      "initials": "01"
-    },
-    {
-      "name": "Profile coming soon",
-      "role": "Undergraduate Researcher",
-      "initials": "02"
-    },
-    {
-      "name": "Profile coming soon",
-      "role": "Undergraduate Researcher",
-      "initials": "03"
-    }
+  {
+    "name": "Jinkwang Kang",
+    "position": "undergraduate",
+    "email": "kang.jinkwang@stonybrook.edu",
+    "researchArea": "Hardware and Controller Design",
+    "bio": "TBA",
+    "photo": "assets/images/portrait-placeholder.svg"
+  },
+  {
+    "name": "Seohyeon (Jina) Cheon",
+    "position": "undergraduate",
+    "email": "seohyeon.cheon@stonybrook.edu ",
+    "researchArea": "Hardware and Controller Design",
+    "bio": "TBA",
+    "photo": "assets/images/portrait-placeholder.svg"
+  },
+  {
+    "name": "Youngjae Cho",
+    "position": "undergraduate",
+    "email": "youngjae.cho@stonybrook.edu",
+    "researchArea": "Motion Capture System Analysis",
+    "bio": "TBA",
+    "photo": "assets/images/portrait-placeholder.svg"
+  },
+  ],
+  "collaborators": [
+  {
+    "name": "Eddie Choi",
+    "affiliation": "TBA",
+    "email": "TBA",
+    "researchArea": "TBA",
+    "bio": "TBA",
+    "photo": "assets/images/portrait-placeholder.svg"
+  }
   ],
   "media": [],
   "courses": [
