@@ -3,10 +3,19 @@ window.HEARD_CONTENT = {
   "journal": [
     {
       "year": 2026,
+      "title": "Ground Reaction Force-Aware Model Predictive Control for Underactuated Upright Physical Assistance",
+      "authors": "Darren Biskup, Jeonghan Yu, Zibo Yu, Sunil K. Agrawal",
+      "venue": "IEEE Robotics and Automation Letters",
+      "details": "Early Access",
+      "doi": "10.1109/LRA.2026.3752000",
+      "topic": "Robotic Control"
+    },
+    {
+      "year": 2026,
       "title": "Whole-Body Coordination and Spinopelvic Alignment during Yoga Standing Maneuvers: Comparing Practitioners with Non-Practitioners",
       "authors": "Jeonghan Yu, Isirame Omofuma, Darren Biskup, Himanshu Pota, and Sunil K. Agrawal",
       "venue": "IEEE Transactions on Neural Systems and Rehabilitation Engineering",
-      "details": "Vol. 34, pp. 2773–2785",
+      "details": "Vol. 34, pp. 2773-2785",
       "doi": "10.1109/TNSRE.2026.3697342",
       "topic": "Human biomechanics"
     },
@@ -24,7 +33,7 @@ window.HEARD_CONTENT = {
       "title": "Autonomous Synthesis of Self-Aligning Knee Joint Exoskeleton Mechanisms",
       "authors": "Jeonghan Yu, Seok Won Kang, and Yoon Young Kim",
       "venue": "IEEE Transactions on Robotics",
-      "details": "Vol. 41, pp. 2358–2373",
+      "details": "Vol. 41, pp. 2358-2373",
       "doi": "10.1109/TRO.2025.3547274",
       "topic": "Robotic design"
     },
@@ -33,7 +42,7 @@ window.HEARD_CONTENT = {
       "title": "Single-Actuator Hip Exoskeleton Mechanism Design with Actuation in Frontal and Sagittal Planes: Design Methodology and Experimental Validation",
       "authors": "Jongjun Lee, Jegyeong Ryu, Gyuik Lee, Jeonghan Yu, Seok Won Kang, and Yoon Young Kim",
       "venue": "IEEE Access",
-      "details": "Vol. 11, pp. 136630–136642",
+      "details": "Vol. 11, pp. 136630-136642",
       "doi": "10.1109/ACCESS.2023.3337144",
       "topic": "Wearable robotics"
     },
