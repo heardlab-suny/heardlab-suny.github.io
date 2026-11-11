@@ -162,9 +162,9 @@
     return `<img class="profile-photo" src="${escape(src)}" alt="${escape(alt)}" loading="lazy" width="400" height="500">`;
   }
   function memberInterests(m){
-    const interests=Array.isArray(m.researchInterests)?m.researchInterests:[];
-    // Retain legacy text even when an entry also has the new array.
-    return [...new Set([...interests,m.researchArea,m.bio]
+    const value=m.researchInterests??m.researchArea;
+    const interests=Array.isArray(value)?value:[value];
+    return [...new Set(interests
       .filter(value=>typeof value==='string'&&value.trim())
       .map(value=>value.trim()))];
   }
@@ -172,11 +172,80 @@
     const interests=memberInterests(m);
     return interests.length?`<div class="member-interests"><h4>Research Interests</h4><ul>${interests.map(interest=>`<li>${escape(interest)}</li>`).join('')}</ul></div>`:'';
   }
+  let biographyId=0;
+  function biography(m){
+    if(typeof m.bio!=='string'||!m.bio.trim())return '';
+    const id=`profile-biography-${++biographyId}`;
+    return `<div class="member-biography"><h4>Biography</h4><p class="member-bio" id="${id}">${escape(m.bio)}</p><button type="button" class="bio-toggle" aria-expanded="false" aria-controls="${id}" hidden>Read More</button></div>`;
+  }
+  function initBiographies(){
+    // Full text is the default; only enhance when CSS clamping is supported.
+    if(!window.CSS||!CSS.supports('-webkit-line-clamp','3'))return;
+    const entries=[...document.querySelectorAll('.member-biography')].map(section=>{
+      const text=section.querySelector('.member-bio'),button=section.querySelector('button');
+      const entry={text,button,width:0};
+      button.addEventListener('click',()=>{
+        const expanded=button.getAttribute('aria-expanded')!=='true';
+        button.setAttribute('aria-expanded',String(expanded));
+        button.textContent=expanded?'Read Less':'Read More';
+        text.classList.toggle('is-collapsed',!expanded);
+      });
+      return entry;
+    });
+    function measure(entry){
+      const {text,button}=entry;
+      // scrollHeight includes the full text even while the visible box is clamped.
+      const overflow=text.scrollHeight>parseFloat(getComputedStyle(text).lineHeight)*3+1;
+      const expanded=overflow&&button.getAttribute('aria-expanded')==='true';
+      text.classList.toggle('is-collapsed',overflow&&!expanded);
+      if(button.hidden===overflow)button.hidden=!overflow;
+      if(!overflow&&button.getAttribute('aria-expanded')!=='false'){
+        button.setAttribute('aria-expanded','false');
+        button.textContent='Read More';
+      }
+    }
+    let frame=0;
+    const pending=new Set();
+    function schedule(items){
+      items.forEach(entry=>pending.add(entry));
+      if(frame)return;
+      frame=requestAnimationFrame(()=>{
+        frame=0;
+        pending.forEach(entry=>{
+          try{measure(entry);}catch{
+            entry.text.classList.remove('is-collapsed');
+            entry.button.hidden=true;
+          }
+        });
+        pending.clear();
+      });
+    }
+    if(window.ResizeObserver){
+      const lookup=new Map(entries.map(entry=>[entry.text,entry]));
+      const observer=new ResizeObserver(records=>{
+        const changed=[];
+        records.forEach(record=>{
+          const entry=lookup.get(record.target),width=record.contentRect.width;
+          // Expansion changes height only; do not create a measurement loop.
+          if(width!==entry.width){entry.width=width;changed.push(entry);}
+        });
+        if(changed.length)schedule(changed);
+      });
+      entries.forEach(entry=>observer.observe(entry.text));
+    }else{
+      window.addEventListener('resize',()=>schedule(entries));
+    }
+    if(document.fonts){
+      document.fonts.ready.then(()=>schedule(entries));
+      document.fonts.addEventListener('loadingdone',()=>schedule(entries));
+    }
+    schedule(entries);
+  }
   function memberCard(m,collaborator=false){
     const email=String(m.email||'').trim();
     const emailLink=/^[^\s@<>?&#]+@[^\s@<>?&#]+\.[^\s@<>?&#]+$/.test(email)
       ? `<a class="member-email" href="mailto:${escape(encodeURIComponent(email))}">${escape(email)}</a>` : '';
-    return `<article class="member-card">${profilePhoto(m)}<div class="member-body"><h3>${escape(m.name)}</h3>${collaborator?'':positionTag(m.position)}${collaborator&&m.affiliation?`<p class="member-affiliation">${escape(m.affiliation)}</p>`:''}${collaborator?`${m.researchArea?`<span class="research-label">${escape(m.researchArea)}</span>`:''}${m.bio?`<p class="member-bio">${escape(m.bio)}</p>`:''}`:researchInterestsList(m)}${emailLink}</div></article>`;
+    return `<article class="member-card">${profilePhoto(m)}<div class="member-body"><h3>${escape(m.name)}</h3>${collaborator?'':positionTag(m.position)}${collaborator&&m.affiliation?`<p class="member-affiliation">${escape(m.affiliation)}</p>`:''}${researchInterestsList(m)}${biography(m)}${emailLink}</div></article>`;
   }
   const profiles=arr=>Array.isArray(arr)?arr.filter(m=>m&&typeof m.name==='string'&&m.name.trim()):[];
   function renderProfiles(id,arr,render){
@@ -196,6 +265,7 @@
   const orderedMembers=profiles(data.members).sort((a,b)=>positionRank(a.position)-positionRank(b.position));
   renderProfiles('team-members',orderedMembers,m=>memberCard(m));
   renderProfiles('team-collaborators',data.collaborators,m=>memberCard(m,true));
+  initBiographies();
   renderProfiles('home-members',orderedMembers.slice(0,3),m=>`<a class="member-mini" href="members.html">${profilePhoto(m)}<strong>${escape(m.name)}</strong>${positionTag(m.position)}${memberInterests(m).length?`<span>${escape(memberInterests(m)[0])}</span>`:''}</a>`);
   document.querySelectorAll('.profile-photo').forEach(img=>{
     img.addEventListener('error',()=>{

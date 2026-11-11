@@ -233,13 +233,17 @@ window.HEARD_CONTENT = {
     }
   ],
   // Add confirmed profiles here; these examples are documentation only.
-  // members: { name, position, email, researchInterests: ["Interest", ...], photo }
+  // members: { name, position, email, researchInterests: ["Interest", ...], bio, photo }
   // Add any number of strings; each becomes a bullet on the Team page.
-  // Legacy researchArea/bio text is also retained by the renderer.
+  // researchArea is a fallback only when researchInterests is missing.
+  // Optional bio is separate from interests; empty/missing bio hides the section.
+  // Keep the full biography here; long text gets Read More on the Members page.
+  // After profile edits, also refresh the static cards in members.html for visitors
+  // without JavaScript. Normal page loads render these arrays automatically.
   // Existing text (including TBA) below is preserved verbatim; edit when confirmed.
   // position: "postdoc", "visiting", "phd", "ms", or "undergraduate".
   // Leave blank if unconfirmed; no tag is shown and the profile sorts last.
-  // collaborators: { name, affiliation, email, researchArea, bio, photo }
+  // collaborators: { name, affiliation, email, researchInterests: ["Interest", ...], bio, photo }
   // photo is a site-relative path, e.g. assets/images/members/full-name.jpg
   // or assets/images/collaborators/full-name.jpg. Create folders as needed.
   // Omit unknown optional fields or use an empty string. Missing/broken photos
@@ -280,12 +284,16 @@ window.HEARD_CONTENT = {
   ],
   "collaborators": [
   {
-    "name": "Eddie Choi",
-    "affiliation": "TBA",
-    "email": "TBA",
-    "researchArea": "TBA",
-    "bio": "TBA",
-    "photo": "assets/images/portrait-placeholder.svg"
+    "name": "Edward Choi",
+    "affiliation": "Columbia University",
+    "email": "ec3279@columbia.edu",
+    "researchInterests": [
+      "Human-Centered & Rehabilitation Robotics",
+      "Multimodal Robot Perception & Machine Learning",
+      "Robot Learning & Human-Robot Interaction",
+    ],
+    "bio": "My research focuses on human-centered robotics, multimodal perception, and machine learning, with an emphasis on developing intelligent assistive systems. At Columbia University's ROAR Lab, I have worked on integrating multimodal sensor data and deep learning to enable real-time human posture recognition and adaptive robotic assistance. My current research collaboration with the HEARD Lab focuses on estimating center of pressure (CoP) from kinematic and anthropometric data, initially exploring Gaussian Process Regression (GPR) while investigating additional machine learning approaches to improve estimation accuracy and generalizability.",
+    "photo": "assets/images/Members/Eddie.png"
   }
   ],
   "media": [],
