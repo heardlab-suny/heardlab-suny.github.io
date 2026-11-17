@@ -130,7 +130,13 @@
     years.addEventListener('change',update);
     update();
   }
-  function pubCard(p){const href=p.doi?`<a class="paper-link" href="https://doi.org/${encodeURI(p.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>`:'';const venue=p.details?`${escape(p.venue)} · ${escape(p.details)}`:escape(p.venue);const loc=p.location?` · ${escape(p.location)}`:'';const badge=p.presentation?`<span class="paper-kind">${escape(p.presentation)}</span>`:'';return `<article class="pub-item"><div class="pub-year">${escape(p.year)}</div><div><h3>${escape(p.title)}</h3><p class="authors">${strongName(p.authors)}</p><p class="venue">${venue}${loc}</p><div class="pub-tags">${href}${badge}</div></div></article>`;}
+  // Accept only absolute http(s) URLs; returns the normalized URL or '' if unsafe/invalid.
+  const safeHttpUrl = value => {
+    if (typeof value !== 'string' || !value.trim()) return '';
+    try { const url = new URL(value.trim()); return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : ''; }
+    catch (error) { return ''; }
+  };
+  function pubCard(p){const doiLink=p.doi?`<a class="paper-link" href="https://doi.org/${encodeURI(p.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>`:'';const webpageUrl=safeHttpUrl(p.webpage);const webpageLink=webpageUrl?`<a class="paper-link" href="${escape(webpageUrl)}" target="_blank" rel="noopener noreferrer">Webpage ↗</a>`:'';const href=doiLink+webpageLink;const venue=p.details?`${escape(p.venue)} · ${escape(p.details)}`:escape(p.venue);const loc=p.location?` · ${escape(p.location)}`:'';const badge=p.presentation?`<span class="paper-kind">${escape(p.presentation)}</span>`:'';return `<article class="pub-item"><div class="pub-year">${escape(p.year)}</div><div><h3>${escape(p.title)}</h3><p class="authors">${strongName(p.authors)}</p><p class="venue">${venue}${loc}</p><div class="pub-tags">${href}${badge}</div></div></article>`;}
   function annCard(a){return `<a class="announcement-item" href="${escape(a.href||'contact.html')}"><div class="tag">${escape(a.tag)}</div><h3>${escape(a.title)}</h3><p>${escape(a.text)}</p></a>`;}
   // Insertion order defines academic seniority for Current Members only.
   const POSITION_LABELS = Object.freeze({

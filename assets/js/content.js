@@ -1,4 +1,8 @@
 // Update publication entries, news, members, and courses here.
+// Publications (journal / international / korea) accept optional link fields:
+//   "doi": "10.xxxx/xxxxx"                 -> shows "DOI ↗" (links to https://doi.org/...)
+//   "webpage": "https://example.com/page"   -> shows "Webpage ↗" (project/research page; http(s) only)
+// Omit a field, or leave it "" / null, to hide that link.
 window.HEARD_CONTENT = {
   "journal": [
     {
@@ -8,6 +12,7 @@ window.HEARD_CONTENT = {
       "venue": "IEEE Robotics and Automation Letters",
       "details": "Early Access",
       "doi": "10.1109/LRA.2026.3752000",
+      "webpage": "https://darrenbiskupphd.github.io/grf-mpc/",
       "topic": "Robotic Control"
     },
     {
@@ -286,9 +291,8 @@ window.HEARD_CONTENT = {
     "email": "youngjae.cho@stonybrook.edu",
     "researchInterests": [
       "Motion Capture System Analysis",
-      "TBA"
     ],
-    "photo": "assets/images/portrait-placeholder.svg"
+    "photo": "assets/images/Members/Youngjae.jpg"
   },
   ],
   "collaborators": [
